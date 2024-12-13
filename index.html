@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant (Polaris Office Style)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">AI Assistant</div>
+        <div class="settings">⚙</div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Notion API 설정</h2>
+            <div class="input-group">
+                <label for="notion-api-key">Notion API Key</label>
+                <input type="text" id="notion-api-key" placeholder="예: secret_xxx...">
+            </div>
+            <div class="input-group">
+                <label for="notion-db-id">Notion Database URL</label>
+                <input type="text" id="notion-db-id" placeholder="예: https://www.notion.so/...">
+            </div>
+            <div class="save-btn" onclick="saveSettings()">저장</div>
+            <p style="font-size:0.9em; color:#666;">
+                위 정보를 저장한 뒤, 채팅창에 질문을 입력하면 해당 DB 기반으로 문서 생성 및 대화를 진행할 수 있습니다.
+            </p>
+        </div>
+        <div class="main">
+            <div class="chat-container" id="chat-container">
+                <div class="chat-message assistant-message">
+                    안녕하세요! 노션 DB기반 문서 도우미입니다. 질문이 있으면 말씀해주세요.
+                </div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="여기에 질문을 입력하세요..." />
+                <button id="send-btn" onclick="sendMessage()">전송</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="module">
+        import Chatbot from "https://cdn.jsdelivr.net/npm/windyflo-embed/dist/web.js";
+        Chatbot.initFull({
+            chatflowid: "70cba272-7a6b-497a-a2c0-d2f570934115",
+            apiHost: "https://www.windyflo.com",
+        });
+    </script>
+</body>
+</html>
