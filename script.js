@@ -1,28 +1,22 @@
 // WindyFlo API 호출 함수
-async function queryWindyFlo(data) {
-    try {
-        const response = await fetch(
-            "https://www.windyflo.com/api/v1/prediction/70cba272-7a6b-497a-a2c0-d2f570934115",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            }
-        );
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+async function query(data) {
+    const response = await fetch(
+        "https://www.windyflo.com/api/v1/prediction/70cba272-7a6b-497a-a2c0-d2f570934115",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
         }
-
-        const result = await response.json();
-        return result;
-    } catch (error) {
-        console.error("WindyFlo API Error:", error);
-        return { answer: "API 호출 중 오류가 발생했습니다." };
-    }
+    );
+    const result = await response.json();
+    return result;
 }
+
+query({"question": "Hey, how are you?"}).then((response) => {
+    console.log(response);
+});
 
 // 메시지 추가 함수
 function addMessage(text, sender) {
